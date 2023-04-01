@@ -45,7 +45,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.8
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -70,6 +70,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 8698302858456531496}
+  animator: {fileID: 0}
+  dieDelay: 2
   targetThreshold: 2
   hasPartner: 0
   partner: {fileID: 0}
@@ -86,8 +88,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 48235926871900761, guid: 7dcfdc498cbd4844cb08b15b19fce1e9,
         type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 48235926871900761, guid: 7dcfdc498cbd4844cb08b15b19fce1e9,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 48235926871900761, guid: 7dcfdc498cbd4844cb08b15b19fce1e9,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 5605541969268042300, guid: 7dcfdc498cbd4844cb08b15b19fce1e9,
         type: 3}
@@ -182,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 7892521538036328052, guid: 7dcfdc498cbd4844cb08b15b19fce1e9,
         type: 3}
       propertyPath: lookForPoliceRadius
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dcfdc498cbd4844cb08b15b19fce1e9, type: 3}
@@ -218,8 +230,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 8698302858456531503}
     m_Modifications:
     - target: {fileID: 817759577, guid: 9d952a0b22019f8408be43cd69f0623f, type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 817759577, guid: 9d952a0b22019f8408be43cd69f0623f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817759577, guid: 9d952a0b22019f8408be43cd69f0623f, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 4206895483440589057, guid: 9d952a0b22019f8408be43cd69f0623f,
         type: 3}
@@ -249,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 4206895483440589057, guid: 9d952a0b22019f8408be43cd69f0623f,
         type: 3}
       propertyPath: lookForPoliceRadius
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5669835707393640262, guid: 9d952a0b22019f8408be43cd69f0623f,
         type: 3}

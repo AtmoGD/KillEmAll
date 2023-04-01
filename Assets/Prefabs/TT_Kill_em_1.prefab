@@ -45,7 +45,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.8
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 8698302858456531496}
+  animator: {fileID: 0}
   targetThreshold: 2
   hasPartner: 0
   partner: {fileID: 0}
@@ -84,6 +85,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8698302858456531503}
     m_Modifications:
+    - target: {fileID: 1293524569, guid: fa4ecb184204851449af956f8c8999b3, type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1293524569, guid: fa4ecb184204851449af956f8c8999b3, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -160,11 +165,6 @@ PrefabInstance:
       objectReference: {fileID: 4816443096838702903}
     - target: {fileID: 7703409142336714798, guid: fa4ecb184204851449af956f8c8999b3,
         type: 3}
-      propertyPath: penalty
-      value: -60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7703409142336714798, guid: fa4ecb184204851449af956f8c8999b3,
-        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -172,11 +172,6 @@ PrefabInstance:
         type: 3}
       propertyPath: hasPartner
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7703409142336714798, guid: fa4ecb184204851449af956f8c8999b3,
-        type: 3}
-      propertyPath: lookForPoliceRadius
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa4ecb184204851449af956f8c8999b3, type: 3}
@@ -206,6 +201,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8698302858456531503}
     m_Modifications:
     - target: {fileID: 817759577, guid: 9d952a0b22019f8408be43cd69f0623f, type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 817759577, guid: 9d952a0b22019f8408be43cd69f0623f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -221,11 +220,6 @@ PrefabInstance:
       objectReference: {fileID: 1323659794251158477}
     - target: {fileID: 4206895483440589057, guid: 9d952a0b22019f8408be43cd69f0623f,
         type: 3}
-      propertyPath: penalty
-      value: -60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206895483440589057, guid: 9d952a0b22019f8408be43cd69f0623f,
-        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -233,11 +227,6 @@ PrefabInstance:
         type: 3}
       propertyPath: hasPartner
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206895483440589057, guid: 9d952a0b22019f8408be43cd69f0623f,
-        type: 3}
-      propertyPath: lookForPoliceRadius
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5669835707393640262, guid: 9d952a0b22019f8408be43cd69f0623f,
         type: 3}

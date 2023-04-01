@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class PeopleController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float dieDelay = 2f;
     [SerializeField] private float targetThreshold = 1f;
     [SerializeField] private bool hasPartner = false;
     [SerializeField] private PeopleController partner;
@@ -15,6 +17,7 @@ public class PeopleController : MonoBehaviour
     [SerializeField] private float lookForPoliceRadius = 10f;
     private Transform target;
 
+    private bool isDead = false;
 
     public void SetTarget(Transform target)
     {
@@ -25,7 +28,7 @@ public class PeopleController : MonoBehaviour
 
     private void Update()
     {
-        if (!target) return;
+        if (!target || isDead) return;
 
         if (Vector3.Distance(transform.position, target.position) < targetThreshold)
         {
@@ -47,6 +50,8 @@ public class PeopleController : MonoBehaviour
 
     public void GetHit()
     {
+        if (isDead) return;
+
         if (hasPartner)
         {
             if (partner)
@@ -56,10 +61,6 @@ public class PeopleController : MonoBehaviour
             }
             else
                 GameManager.instance.AddScore(penalty);
-        }
-        else
-        {
-            GameManager.instance.EndGame();
         }
 
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, lookForPoliceRadius, Vector3.up, 0f);
@@ -77,8 +78,16 @@ public class PeopleController : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
+
         GameManager.instance.RemovePeople(this);
-        Destroy(gameObject);
+
+        GetComponent<NavMeshAgent>().enabled = false;
+
+        if (animator)
+            animator.SetTrigger("Die");
+
+        Destroy(gameObject, dieDelay);
     }
 
     private void OnDrawGizmos()

@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private float currentPanSpeed = 0f;
     private float currentTiltSpeed = 0f;
 
+    private bool gameOver = false;
+
     private float PanSpeed
     {
         get
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (gameOver) return;
+
         if (playerInput.currentControlScheme == "Gamepad")
             controllSheme = ControllSheme.Gamepad;
         else
@@ -94,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (shootTimer > 0f) return;
+        if (shootTimer > 0f || gameOver) return;
 
         shootTimer = shootTimeout;
         sniperAnimator.SetTrigger("Shoot");
@@ -127,6 +131,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
+        if (gameOver) return;
+
         if (context.started)
         {
             if (Cursor.lockState == CursorLockMode.Locked)
@@ -136,4 +142,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EndGame()
+    {
+        gameOver = true;
+        UnlockCursor();
+    }
 }

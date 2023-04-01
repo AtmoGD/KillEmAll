@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [SerializeField] private PlayerController player;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text gameOverScoreText;
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject[] peoplePrefabs;
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private AnimationCurve peopleCountOverTime;
@@ -13,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<PeopleController> people = new List<PeopleController>();
     private float timeInLevel = 0f;
     private int score = 0;
+    private bool isGameOver = false;
     private void Awake()
     {
         if (instance)
@@ -26,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isGameOver) return;
+
         timeInLevel += Time.deltaTime;
 
         int peopleCount = Mathf.RoundToInt(peopleCountOverTime.Evaluate(timeInLevel));
@@ -35,7 +43,17 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("Game Over");
+        if (isGameOver) return;
+
+        isGameOver = true;
+        gameOverPanel.SetActive(true);
+        gameOverScoreText.text = score.ToString();
+        player.EndGame();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SpawnPeople(int _amount)
@@ -53,6 +71,8 @@ public class GameManager : MonoBehaviour
 
     private void Spawn()
     {
+        if (isGameOver) return;
+
         GameObject peoplePrefab = peoplePrefabs[Random.Range(0, peoplePrefabs.Length)];
         Transform spawnWaypoint = GetRandomWaypoint();
         Transform targetWaypoint = GetRandomWaypoint();
@@ -63,8 +83,8 @@ public class GameManager : MonoBehaviour
         }
 
         PeopleController newPeople = Instantiate(peoplePrefab, spawnWaypoint.position, Quaternion.identity).GetComponent<PeopleController>();
-        newPeople.SetTarget(targetWaypoint);
         people.Add(newPeople);
+        newPeople.SetTarget(targetWaypoint);
     }
 
     public void RemovePeople(PeopleController _people)
@@ -74,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int _score)
     {
+        if (isGameOver) return;
+
         score += _score;
         scoreText.text = score.ToString();
     }
